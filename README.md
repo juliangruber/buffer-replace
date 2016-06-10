@@ -18,6 +18,12 @@ replace('foo-beep-bar', '-beep-', '-');
 // Buffer('foo-bar')
 ```
 
+## Installation
+
+```bash
+$ npm install buffer-replace
+```
+
 ## API
 
 ### replace(buf, a, b)
