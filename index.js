@@ -8,12 +8,8 @@ const replace = (buf, a, b) => {
 
   const before = buf.slice(0, idx);
   const after = replace(buf.slice(idx + a.length), a, b);
-
-  return Buffer.concat([
-    before,
-    b,
-    after
-  ], idx + b.length + after.length);
+  const len = idx + b.length + after.length;
+  return Buffer.concat([ before, b, after ], len);
 }
 
 module.exports = replace;
