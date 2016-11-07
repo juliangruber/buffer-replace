@@ -8,6 +8,6 @@
     "test": "tap test.js"
   },
   "devDependencies": {
-    "tap": "^5.7.2"
+    "tap": "^8.0.0"
   }
 }
