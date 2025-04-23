@@ -1,21 +1,20 @@
 'use strict';
 
 const iterBuffers = function* (buf, a, b) {
-  if (!Buffer.isBuffer(buf)) buf = Buffer(buf);
-  if (!Buffer.isBuffer(b)) b = Buffer(b);
-  let idx = buf.indexOf(a);
+  let workBuf = Buffer.from(buf);
+  if (!Buffer.isBuffer(b)) b = Buffer.from(b);
+  let idx = workBuf.indexOf(a);
   while (idx > -1) {
-    yield buf.slice(0, idx);
+    yield workBuf.subarray(0, idx);
     yield b;
-    buf = buf.slice(idx + a.length);
-    idx = buf.indexOf(a);
+    workBuf = workBuf.subarray(idx + a.length);
+    idx = workBuf.indexOf(a);
   }
-  yield buf;
+  yield workBuf;
 }
 
 const replace = (buf, a, b) => {
-  return Buffer.concat(iterBuffers(buf, a, b));
+  return Buffer.concat(Array.from(iterBuffers(buf, a, b)));
 }
 
 module.exports = replace;
-
